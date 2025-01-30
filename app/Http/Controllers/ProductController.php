@@ -87,4 +87,10 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->route('products.index')->with('success','DProduct deleted successfully!');   
     }
+
+    public function marketplace()
+    {
+        $products = Product::where('quantity', '>', 0)->get(); //only show products in stock
+        return view('products.marketplace', compact('products'));
+    }
 }
